@@ -36,3 +36,9 @@ def ndvi(red, nir, output):
     with rasterio.open(output, "w", **profile) as dst:
         dst.write(ndvi, 1)
 
+if __name__ == "__main__":
+    red_band = "/Users/sadrealam/Desktop/uno/ndvi/data/LC08_L1TP_040037_20260830_20260910_02_T1_B4.TIF"
+    nir_band = "/Users/sadrealam/Desktop/uno/ndvi/data/LC08_L1TP_040037_20260830_20260910_02_T1_B5.TIF"
+    output_file = "/Users/sadrealam/Desktop/uno/ndvi/data/ndvi_output.tif"
+
+    ndvi(red_band, nir_band, output_file)

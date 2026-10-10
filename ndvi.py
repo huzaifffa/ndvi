@@ -1,4 +1,7 @@
+from email.mime import image
+
 import rasterio
+import matplotlib.pyplot as plt
 # import numpy as np
 
 def ndvi(red, nir, output):
@@ -16,6 +19,14 @@ def ndvi(red, nir, output):
     x = input("Enter the value y if you want to calculate ndvi or pass to continue: ")
     if x == "y":
         ndvi = (nir - red) / (nir + red)
+        image = input('press y to get image of the result')
+        if image == "y":
+            import matplotlib.pyplot as plt
+            plt.imshow(ndvi, cmap='RdYlGn')
+            plt.colorbar()
+            plt.title('NDVI Image')
+            plt.show()
+
     else:
         print("Continuing without calculating ndvi.")
         return

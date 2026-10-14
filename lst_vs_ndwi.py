@@ -5,16 +5,16 @@ from matplotlib.colors import LinearSegmentedColormap
 from lst_vs_ndvi import read_band
 
 
-def lst_vs_ndwi(ndwi, lst, output=None, ndwi_max=0):
+def lst_vs_ndwi(ndwi, lst, output=None, ndwi_min=0):
     ndwi = read_band(ndwi).ravel()
     lst = read_band(lst).ravel()
 
     # Keep only pixels where both values are valid
     valid = np.isfinite(ndwi) & np.isfinite(lst) & (ndwi >= -1) & (ndwi <= 1)
-    # Water has NDWI > 0 and is much cooler than land, which hides the land trend.
-    # Set ndwi_max=None to keep every pixel.
-    if ndwi_max is not None:
-        valid &= ndwi <= ndwi_max
+    # Ignore NDWI values below ndwi_min (land), keeping water pixels.
+    # Set ndwi_min=None to keep every pixel.
+    if ndwi_min is not None:
+        valid &= ndwi >= ndwi_min
     ndwi = ndwi[valid]
     lst = lst[valid]
 

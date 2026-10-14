@@ -32,7 +32,7 @@ def lst_vs_ndwi(ndwi, lst, output=None, ndwi_min=0):
     x = np.array([ndwi.min(), ndwi.max()])
     ax.plot(x, slope * x + intercept, color="#1a1a1a", linewidth=2)
     ax.text(0.02, 0.04,
-            f"LST = {slope:.2f} × NDWI + {intercept:.2f}\nr = {r:.2f}   R² = {r ** 2:.2f}",
+            f"LST = {slope:.2f} × NDWI + {intercept:.2f}\nr = {r:.2f}",
             transform=ax.transAxes, fontsize=10, color="#1a1a1a",
             bbox=dict(facecolor="white", edgecolor="#cccccc", boxstyle="round"))
 
